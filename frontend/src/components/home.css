@@ -1,0 +1,159 @@
+/* General homepage container */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* To position the modal on top */
+}
+
+/* Image grid styling */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible columns */
+    gap: 30px; /* Space between images */
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 100%;
+    max-width: 1300px;
+    position: relative; /* Ensure images are under the modal */
+}
+
+/* Image item styling */
+.image-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Modal container */
+.modal-container {
+    position: absolute; /* Position the modal over the images */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure modal appears above the images */
+}
+
+/* Login box styling */
+.login-box {
+    background-color: #fff;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.welcome-text {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.input-field {
+    width: 100%; 
+    padding: 12px 20px; 
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    width: 50%;
+    padding: 12px;
+    background-color: #459fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #007BFF
+}
+
+.signup-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.signup-text {
+    font-size: 14px;
+    color: #888;
+    font-weight: bold;
+}
+
+.or-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.or-text {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #999;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+}
+
+
+/* Box around "Create an Account" or "Back to Login" */
+.switch-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    background-color: #fff; /* White background */
+    color: #007BFF;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.switch-btn:hover {
+    border-color: #007BFF; /* Border changes to blue */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+
+
