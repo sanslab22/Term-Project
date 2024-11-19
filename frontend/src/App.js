@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Home from './components/home';  // Import Home component
 import Navbar from './components/navbar';  // Import Navbar component
 import Body from './components/body';  // Import Body component
@@ -16,13 +16,14 @@ function App() {
     };
 
     return (
+        // "Hello World"
         <div className="App">
             {/* Render different components based on login state */}
             {isLoggedIn ? (
                 <>
                     <Navbar onLogout={handleLogout} />  {/* Pass logout function to Navbar */}
                     <Body />  {/* Show the Body component when logged in */}
-                    
+
                 </>
             ) : (
                 <>
