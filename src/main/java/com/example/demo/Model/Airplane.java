@@ -9,7 +9,7 @@ public class Airplane {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long airplaneId;
+    private Long airplaneID;
 
     @Column(nullable = false)
     private String airline;

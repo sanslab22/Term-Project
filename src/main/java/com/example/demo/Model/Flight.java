@@ -14,16 +14,17 @@ public class Flight {
     private Long flightID;
 
     @ManyToOne
-    @JoinColumn(name = "airplaneID")
+    @JoinColumn(name = "airplaneID", nullable = false)
     private Airplane airplaneID;
 
-    @ManyToOne
-    @JoinColumn(name = "departureAirportCode")
-    private Airport departureID;
 
     @ManyToOne
-    @JoinColumn(name = "destinationAirportCode")
-    private Airport destinationID;
+    @JoinColumn(name = "departureAirportCode", nullable = false)
+    private Airport departure;
+
+    @ManyToOne
+    @JoinColumn(name = "destinationAirportCode", nullable = false)
+    private Airport destination;
 
     @Column(name = "departureTime", nullable = false)
     private Timestamp departureTime;
