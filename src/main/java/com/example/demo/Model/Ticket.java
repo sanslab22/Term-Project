@@ -27,8 +27,11 @@ public class Ticket {
     @Column(nullable = false)
     private Long unitPrice = 50L;
 
-    @ManyToOne
-    @JoinColumn(name = "passengerID")
-    private Passenger passenger;
-
+//    @ManyToOne
+//    @JoinColumn(name = "passengerID")
+//    private Passenger passenger;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
 } // Ticket
