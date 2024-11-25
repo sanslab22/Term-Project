@@ -20,8 +20,13 @@ public class PassengerController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public Passenger userCreateAccount(@RequestBody Passenger passenger){
-            return passengerService.createUserAccount(passenger);
+    public ResponseEntity<String> registerPassenger(@RequestBody com.example.demo.DTO.RegisterPassengerRequestDTO request){
+        try {
+            passengerService.registerPassenger(request);
+            return ResponseEntity.status(201).body("Passenger account created successfully.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{passengerId}")

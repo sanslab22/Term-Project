@@ -26,6 +26,9 @@ public class Passenger {
     @Email
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @ManyToMany
     @JoinTable( name = "passenger_payment",
             joinColumns = @JoinColumn(name = "passengerID"),
@@ -71,5 +74,13 @@ public class Passenger {
 
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 } // Passenger
