@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 import com.example.demo.Model.Passenger;
 import com.example.demo.Repository.PassengerRepository;
-import com.example.demo.security.JWTTokenUtil;
+import com.example.demo.exception.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class AuthService {
 
         // Verify the password
         if (!passwordEncoder.matches(password, passenger.getPassword())) {
-            throw new IllegalArgumentException("Invalid credentials");
+            throw new InvalidCredentialsException("Invalid credentials");
         }
 
         // Generate JWT token after successful authentication

@@ -1,16 +1,8 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.Flight;
-import com.example.demo.Model.Ticket;
 import com.example.demo.Repository.FlightRepository;
-import com.example.demo.Repository.TicketRepository;
-import com.example.demo.dto.ReservationRequestDTO;
-import com.example.demo.exception.FlightNotFoundException;
-import com.example.demo.exception.PassengerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
