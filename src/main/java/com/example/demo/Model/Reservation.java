@@ -21,7 +21,7 @@ public class Reservation {
     @JoinColumn(name = "passengerID")
     private Passenger passenger;
 
-    @Column(name = "toatlPrice", nullable = false)
+    @Column(name = "totalPrice", nullable = false)
     private Double totalPrice;
 }
 

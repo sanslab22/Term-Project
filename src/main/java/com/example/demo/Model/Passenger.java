@@ -26,10 +26,7 @@ public class Passenger {
     @Email
     private String email;
 
-    @ManyToMany
-    @JoinTable( name = "passenger_payment",
-            joinColumns = @JoinColumn(name = "passengerID"),
-            inverseJoinColumns = @JoinColumn(name = "paymentID") )
-    private List<Payment> payments = new ArrayList<Payment>();
+    @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Card> cards;
 
 } // Passenger

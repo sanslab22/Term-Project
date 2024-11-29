@@ -19,12 +19,12 @@ public class Flight {
 
 
     @ManyToOne
-    @JoinColumn(name = "departureAirportCode", nullable = false)
-    private Airport departure;
+    @JoinColumn(name = "startAirportCode", nullable = false)
+    private Airport startAirportCode;
 
     @ManyToOne
-    @JoinColumn(name = "destinationAirportCode", nullable = false)
-    private Airport destination;
+    @JoinColumn(name = "endAirportCode", nullable = false)
+    private Airport endAirportCode;
 
     @Column(name = "departureTime", nullable = false)
     private Timestamp departureTime;
