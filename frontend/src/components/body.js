@@ -15,6 +15,20 @@ const Body = () => {
     });
     const [selectedFlight, setSelectedFlight] = useState(null);
 
+    function addMinutesToTime(timeString, minutesToAdd) {
+        // Convert the time string to a Date object
+        let [hours, minutes, seconds] = timeString.split(':').map(Number);
+        let date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes + minutesToAdd);
+        date.setSeconds(seconds);
+        // Format the result back to a time string
+        let newHours = String(date.getHours()).padStart(2, '0');
+        let newMinutes = String(date.getMinutes()).padStart(2, '0');
+        let newSeconds = String(date.getSeconds()).padStart(2, '0');
+        return `${newHours}:${newMinutes}:${newSeconds}`
+    }
+
     const handleNextStep = () => {
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
@@ -201,19 +215,19 @@ const Body = () => {
                                 <h2>Booking Summary</h2>
                                 <div class="flight-summary">
                                 <div className="user-summary">
-                                    <p><strong>From:</strong> {formData.from || 'N/A'}</p>
-                                    <p><strong>To:</strong> {formData.to || 'N/A'}</p>
-                                    <p><strong>Seat Class:</strong> {formData.seatClass}</p>
+                                    <p><strong>From:</strong> {formData.from.toUpperCase() || 'N/A'}</p>
+                                    <p><strong>To:</strong> {formData.to.toUpperCase() || 'N/A'}</p>
+                                    <p><strong>Seat Class:</strong> {formData.seatClass.charAt(0).toUpperCase() + formData.seatClass.slice(1)}</p>
                                     <p><strong>Number of People:</strong> {formData.numPeople}</p>
                                     <p><strong>Departure Date:</strong> {formData.departureDate || 'N/A'}</p>
                                 </div>
                                 {selectedFlight ? (
                                     <div className="flight-sum">
-                                        <p><strong>Flight Name:</strong> {selectedFlight.name}</p>
-                                        <p><strong>Departure Time:</strong> {selectedFlight.departureTime}</p>
-                                        <p><strong>Arrival Time:</strong> {selectedFlight.arrivalTime}</p>
-                                        <p><strong>Duration:</strong> {selectedFlight.totalTime}</p>
-                                        <p><strong>Price:</strong> ${selectedFlight.price}</p>
+                                        <p><strong>Flight Name:</strong> {selectedFlight.airplaneID.airplaneID}</p>
+                                        <p><strong>Departure Time:</strong> {selectedFlight.departureTime.substring(11,19)}</p>
+                                        <p><strong>Arrival Time:</strong> {addMinutesToTime(selectedFlight.departureTime.substring(11,19),selectedFlight.duration)}</p>
+                                        <p><strong>Duration:</strong> {selectedFlight.duration} Minutes</p>
+                                        <p><strong>Price:</strong> ${formData.numPeople*50}</p>
                                     </div>
                                 ) : (
                                     <p>No flight selected</p>
