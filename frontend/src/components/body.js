@@ -183,8 +183,12 @@ const Body = () => {
                                 </div>
                                 <form className="payment-form">
                                     <div className="input-group">
+                                        <label htmlFor="card-type">Card Type:</label>
+                                        <input type="text" id="card-type" placeholder="Enter card type" />
+                                    </div>
+                                    <div className="input-group">
                                         <label htmlFor="card-number">Card Number:</label>
-                                        <input type="text" id="card-number" placeholder="Enter card number" />
+                                        <input type="number" id="card-number" placeholder="Enter card number" />
                                     </div>
                                     <div className="input-group">
                                         <label htmlFor="exp-date">Expiration Date:</label>
@@ -192,7 +196,11 @@ const Body = () => {
                                     </div>
                                     <div className="input-group">
                                         <label htmlFor="cvv">CVV:</label>
-                                        <input type="text" id="cvv" placeholder="Enter CVV" />
+                                        <input type="number" id="cvv" placeholder="Enter CVV" />
+                                    </div>
+                                    <div className="input-group">
+                                        <label htmlFor="zipcode">ZipCode:</label>
+                                        <input type="number" id="zipcode" placeholder="Enter Zipcode" />
                                     </div>
                                 </form>
                             </div>
