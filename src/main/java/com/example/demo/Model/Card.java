@@ -28,7 +28,7 @@ public class Card {
     @Column (name = "expirationDate",nullable = false)
     private String expirationDate;
 
-    @ManyToOne @JoinColumn(name = "passengerID", nullable = false)
-    private Passenger passenger;
+    @ManyToOne @JoinColumn(name = "reservationID")
+    private Reservation reservation;
 
 }

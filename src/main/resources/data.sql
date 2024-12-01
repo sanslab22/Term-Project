@@ -1,8 +1,8 @@
 drop table if exists ticket;
+drop table if exists card;
 drop table if exists reservation;
 drop table if exists flight;
 -- drop table if exists passenger_payment;
-drop table if exists card;
 drop table if exists passenger;
 drop table if exists airport;
 drop table if exists airplane;
@@ -58,21 +58,27 @@ INSERT INTO Passenger (passengerID,name, phoneNumber, email) VALUES
                                                                  (104,'Bob Brown', '456-789-0123', 'bob.brown@example.com'),
                                                                  (105,'Charlie Davis', '567-890-1234', 'charlie.davis@example.com'),
                                                                  (106,'Diana Evans', '678-901-2345', 'diana.evans@example.com');
+-- CREATE TABLE Reservation (
+--                              reservationID BIGINT AUTO_INCREMENT PRIMARY KEY,
+--                              passengerID BIGINT,
+--                              totalPrice DOUBLE NOT NULL,
+--                              FOREIGN KEY (passengerID) REFERENCES Passenger(passengerID)
+-- );
 
-CREATE TABLE Card (
-    cardID BIGINT AUTO_INCREMENT PRIMARY KEY,
-    cardType VARCHAR(255) NOT NULL,
-    cardNumber VARCHAR(255) NOT NULL,
-    cardCode VARCHAR(255) NOT NULL,
-    zipCode VARCHAR(255) NOT NULL,
-    expirationDate VARCHAR(255) NOT NULL,
-    passengerID BIGINT NOT NULL,
-    FOREIGN KEY (passengerID) REFERENCES Passenger(passengerID)
-);
-INSERT INTO Card (cardType, cardNumber, cardCode, zipCode,expirationDate,passengerID) VALUES
-                                                                  ('Visa', '4111111111111111', '123', '30301','02/28',101),
-                                                                  ('MasterCard', '5500000000000004', '456', '90210','02/28',102),
-                                                                  ('American Express', '340000000000009', '789', '10001','02/28',103);
+-- CREATE TABLE Card (
+--     cardID BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     cardType VARCHAR(255) NOT NULL,
+--     cardNumber VARCHAR(255) NOT NULL,
+--     cardCode VARCHAR(255) NOT NULL,
+--     zipCode VARCHAR(255) NOT NULL,
+--     expirationDate VARCHAR(255) NOT NULL,
+--     reservationID BIGINT,
+--     FOREIGN KEY (reservationID) REFERENCES Reservation(reservationID)
+-- );
+-- INSERT INTO Card (cardType, cardNumber, cardCode, zipCode,expirationDate,reservationID) VALUES
+--                                                                   ('Visa', '4111111111111111', '123', '30301','02/28',101),
+--                                                                   ('MasterCard', '5500000000000004', '456', '90210','02/28',102),
+--                                                                   ('American Express', '340000000000009', '789', '10001','02/28',103);
 
 CREATE TABLE IF NOT EXISTS Flight (
                                       flightID BIGINT NOT NULL AUTO_INCREMENT,
