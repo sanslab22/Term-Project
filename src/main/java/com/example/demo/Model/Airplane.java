@@ -19,4 +19,36 @@ public class Airplane {
 
     @Column(nullable = false)
     private Integer capacity;
+
+    public Long getAirplaneID() {
+        return airplaneID;
+    }
+
+    public void setAirplaneID(Long airplaneID) {
+        this.airplaneID = airplaneID;
+    }
+
+    public String getAirline() {
+        return airline;
+    }
+
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
+
+    public String getPlaneModel() {
+        return planeModel;
+    }
+
+    public void setPlaneModel(String planeModel) {
+        this.planeModel = planeModel;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 }
