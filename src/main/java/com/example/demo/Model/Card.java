@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="Payment")
-public class Payment {
+@Table(name="Card")
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "paymentID", nullable = false)
-    private Long paymentID;
+    @Column(name = "cardID", nullable = false)
+    private Long cardID;
 
     @Column (name = "cardType", nullable = false)
     private String cardType;
@@ -19,15 +19,17 @@ public class Payment {
     @Column (name = "cardNumber",nullable = false)
     private String cardNumber;
 
-
     @Column (name = "cardCode",nullable = false)
     private String cardCode;
 
     @Column (name = "zipCode",nullable = false)
     private String zipCode;
 
-    @ManyToMany(mappedBy = "payments")
-    private List<Passenger> passengers = new ArrayList<>();
+    @Column (name = "expirationDate",nullable = false)
+    private String expirationDate;
+
+    @ManyToOne @JoinColumn(name = "passengerID", nullable = false)
+    private Passenger passenger;
 
     public Long getPaymentID() {
         return paymentID;

@@ -26,6 +26,9 @@ public class Passenger {
     @Email
     private String email;
 
+    // @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
+    // private List<Card> cards;
+
     @Column(name = "password")
     private String password;
 
@@ -33,7 +36,7 @@ public class Passenger {
     @JoinTable( name = "passenger_payment",
             joinColumns = @JoinColumn(name = "passengerID"),
             inverseJoinColumns = @JoinColumn(name = "paymentID") )
-    private List<Payment> payments = new ArrayList<Payment>();
+    private List<Card> payments = new ArrayList<Card>();
 
 
     public Long getPassengerID() {
@@ -68,11 +71,11 @@ public class Passenger {
         this.email = email;
     }
 
-    public List<Payment> getPayments() {
+    public List<Card> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments) {
+    public void setPayments(List<Card> payments) {
         this.payments = payments;
     }
 
