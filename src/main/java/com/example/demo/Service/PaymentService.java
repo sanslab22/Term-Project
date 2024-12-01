@@ -1,6 +1,6 @@
 package com.example.demo.Service;
 
-import com.example.demo.Model.Payment;
+import com.example.demo.Model.Card;
 import com.example.demo.Repository.PaymentRepository;
 import org.springframework.stereotype.Service;
 

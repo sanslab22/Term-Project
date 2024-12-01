@@ -32,11 +32,11 @@ public class Card {
     private Reservation reservation;
 
     public Long getPaymentID() {
-        return paymentID;
+        return cardID;
     }
 
     public void setPaymentID(Long paymentID) {
-        this.paymentID = paymentID;
+        this.cardID = paymentID;
     }
 
     public String getCardType() {
@@ -70,12 +70,12 @@ public class Card {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
+//
+//    public List<Passenger> getPassengers() {
+//        return passengers;
+//    }
+//
+//    public void setPassengers(List<Passenger> passengers) {
+//        this.passengers = passengers;
+//    }
 }
