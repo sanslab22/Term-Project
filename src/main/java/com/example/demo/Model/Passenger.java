@@ -26,8 +26,9 @@ public class Passenger {
     @Email
     private String email;
 
-    // @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<Card> cards;
+//    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Card> cards;
+
 
     @Column(name = "password")
     private String password;
