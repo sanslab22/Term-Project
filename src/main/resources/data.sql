@@ -2,7 +2,6 @@ drop table if exists ticket;
 drop table if exists card;
 drop table if exists reservation;
 drop table if exists flight;
--- drop table if exists passenger_payment;
 drop table if exists passenger;
 drop table if exists airport;
 drop table if exists airplane;
