@@ -3,7 +3,7 @@ import './body.css';
 import { FaUser, FaChair, FaCalendarAlt } from "react-icons/fa";
 import mockFlights from "../data/mockflights"; // Assuming this contains flight data
 
-const Body = () => {
+const Body = (reservation) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [flights,setFlights] = useState([]);
     const [formData, setFormData] = useState({
@@ -137,7 +137,7 @@ const Body = () => {
 
                                 <div className="input-row">
                                     <div className="input-group">
-                                        <FaUser className="input-icon" />
+                                        <FaUser className="input-icon"/>
                                         <input
                                             type="number"
                                             id="numPeople"
@@ -147,7 +147,7 @@ const Body = () => {
                                         />
                                     </div>
                                     <div className="input-group">
-                                        <FaChair className="input-icon" />
+                                        <FaChair className="input-icon"/>
                                         <select
                                             id="seatClass"
                                             value={formData.seatClass}
@@ -159,7 +159,7 @@ const Body = () => {
                                         </select>
                                     </div>
                                     <div className="input-group">
-                                        <FaCalendarAlt className="input-icon" />
+                                        <FaCalendarAlt className="input-icon"/>
                                         <input
                                             type="date"
                                             id="departureDate"
@@ -173,8 +173,8 @@ const Body = () => {
                     )}
 
                     {currentStep === 2 && (
-                        <div style={{ padding: '20px' }}>
-                            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Available Flights</h2>
+                        <div style={{padding: '20px'}}>
+                            <h2 style={{textAlign: 'center', marginBottom: '20px'}}>Available Flights</h2>
                             <div className="flight-list">
                                 {flights.map((flight, index) => (
                                     <div
@@ -184,78 +184,90 @@ const Body = () => {
                                     >
                                         <div className="flight-logo">
                                             {flight.airplaneID.airline.includes("Delta") && (
-                                            <img src= 'https://logos-world.net/wp-content/uploads/2021/08/Delta-Logo.png' alt={`${flight.name} logo`} />
+                                                <img
+                                                    src='https://logos-world.net/wp-content/uploads/2021/08/Delta-Logo.png'
+                                                    alt={`${flight.name} logo`}/>
                                             )}
                                             {flight.airplaneID.airline.includes("American") && (
-                                                <img src= 'https://logos-world.net/wp-content/uploads/2020/11/American-Airlines-Emblem.png' alt={`${flight.name} logo`} />
+                                                <img
+                                                    src='https://logos-world.net/wp-content/uploads/2020/11/American-Airlines-Emblem.png'
+                                                    alt={`${flight.name} logo`}/>
                                             )}
                                             {flight.airplaneID.airline.includes("United") && (
-                                                <img src= 'https://www.freepnglogos.com/uploads/united-airlines-logo-png-17.png' alt={`${flight.name} logo`} />
+                                                <img
+                                                    src='https://www.freepnglogos.com/uploads/united-airlines-logo-png-17.png'
+                                                    alt={`${flight.name} logo`}/>
                                             )}
                                             {flight.airplaneID.airline.includes("Southwest") && (
-                                                <img src= 'https://logos-world.net/wp-content/uploads/2020/10/Southwest-Airlines-Emblem.png' alt={`${flight.name} logo`} />
+                                                <img
+                                                    src='https://logos-world.net/wp-content/uploads/2020/10/Southwest-Airlines-Emblem.png'
+                                                    alt={`${flight.name} logo`}/>
                                             )}
                                         </div>
                                         <div className="flight-info">
                                             {/*{flight.startAirportCode.airportCode} - {flight.endAirportCode.airportCode} for*/}
-                                            <h3>{flight.departureTime.substring(0,10)} at {flight.departureTime.substring(11,19)}</h3>
+                                            <h3>{flight.departureTime.substring(0, 10)} at {flight.departureTime.substring(11, 19)}</h3>
                                             <p>{flight.name}</p>
                                             <p>Total Time: {flight.duration} minutes</p>
                                         </div>
                                         <div className="flight-price">
-                                            <h3>${formData.numPeople*50}</h3>
+                                            <h3>${formData.numPeople * 50}</h3>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     )}
-                        {currentStep === 3 && (
-                            <div>
-                                <h2>Booking Summary</h2>
-                                <div class="flight-summary">
+                    {currentStep === 3 && (
+                        <div>
+                            <h2>Booking Summary</h2>
+                            <div class="flight-summary">
                                 <div className="user-summary">
                                     <p><strong>From:</strong> {formData.from.toUpperCase() || 'N/A'}</p>
                                     <p><strong>To:</strong> {formData.to.toUpperCase() || 'N/A'}</p>
-                                    <p><strong>Seat Class:</strong> {formData.seatClass.charAt(0).toUpperCase() + formData.seatClass.slice(1)}</p>
+                                    <p><strong>Seat
+                                        Class:</strong> {formData.seatClass.charAt(0).toUpperCase() + formData.seatClass.slice(1)}
+                                    </p>
                                     <p><strong>Number of People:</strong> {formData.numPeople}</p>
                                     <p><strong>Departure Date:</strong> {formData.departureDate || 'N/A'}</p>
                                 </div>
                                 {selectedFlight ? (
                                     <div className="flight-sum">
                                         <p><strong>Flight Name:</strong> {selectedFlight.airplaneID.airplaneID}</p>
-                                        <p><strong>Departure Time:</strong> {selectedFlight.departureTime.substring(11,19)}</p>
-                                        <p><strong>Arrival Time:</strong> {addMinutesToTime(selectedFlight.departureTime.substring(11,19),selectedFlight.duration)}</p>
+                                        <p><strong>Departure
+                                            Time:</strong> {selectedFlight.departureTime.substring(11, 19)}</p>
+                                        <p><strong>Arrival
+                                            Time:</strong> {addMinutesToTime(selectedFlight.departureTime.substring(11, 19), selectedFlight.duration)}
+                                        </p>
                                         <p><strong>Duration:</strong> {selectedFlight.duration} Minutes</p>
-                                        <p><strong>Price:</strong> ${formData.numPeople*50}</p>
+                                        <p><strong>Price:</strong> ${formData.numPeople * 50}</p>
                                     </div>
                                 ) : (
                                     <p>No flight selected</p>
                                 )}
-                                </div>
-                                <form className="payment-form">
-                                    <div className="input-group">
-                                        <label htmlFor="card-number">Card Number:</label>
-                                        <input type="text" id="card-number" placeholder="Enter card number" />
-                                    </div>
-                                    <div className="input-group">
-                                        <label htmlFor="exp-date">Expiration Date:</label>
-                                        <input type="month" id="exp-date" />
-                                    </div>
-                                    <div className="input-group">
-                                        <label htmlFor="cvv">CVV:</label>
-                                        <input type="text" id="cvv" placeholder="Enter CVV" />
-                                    </div>
-                                </form>
                             </div>
-                        
-                        
+                            <form className="payment-form">
+                                <div className="input-group">
+                                    <label htmlFor="card-number">Card Number:</label>
+                                    <input type="text" id="card-number" placeholder="Enter card number"/>
+                                </div>
+                                <div className="input-group">
+                                    <label htmlFor="exp-date">Expiration Date:</label>
+                                    <input type="month" id="exp-date"/>
+                                </div>
+                                <div className="input-group">
+                                    <label htmlFor="cvv">CVV:</label>
+                                    <input type="text" id="cvv" placeholder="Enter CVV"/>
+                                </div>
+                            </form>
+                        </div>
+
+
                     )}
 
                     {currentStep === 4 && <div>Generate your ticket.</div>}
                 </div>
 
-                            
 
                 {/* Navigation buttons */}
                 <div className="navigation-buttons">

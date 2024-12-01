@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Table(name="Ticket")
 public class Ticket {
     public Ticket(Flight flight, Integer seatNumber, Long unitPrice, Passenger passenger) {
-        this.flight = flight;
+//        this.flight = flight;
         this.seatNumber = seatNumber;
         this.unitPrice = unitPrice;
 //        this.passenger = passenger;
@@ -19,9 +19,9 @@ public class Ticket {
     @Column(name = "ticketID", nullable = false)
     private Long ticketId;
 
-    @ManyToOne
-    @JoinColumn(name = "flightID")
-    private Flight flight;
+//    @ManyToOne
+//    @JoinColumn(name = "flightID")
+//    private Flight flight;
 
     @ManyToOne
     @JoinColumn(name = "reservationID", nullable = true)
@@ -54,13 +54,13 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public Flight getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Flight flight) {
-        this.flight = flight;
-    }
+//    public Flight getFlight() {
+//        return flight;
+//    }
+//
+//    public void setFlight(Flight flight) {
+//        this.flight = flight;
+//    }
 
 //    public Reservation getReservation() {
 //        return reservation;
