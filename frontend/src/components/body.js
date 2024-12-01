@@ -5,6 +5,7 @@ import mockFlights from "../data/mockflights"; // Assuming this contains flight 
 
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(1);
+    const [flights,setFlights] = useState([]);
     const [formData, setFormData] = useState({
         from: '',
         to: '',
@@ -17,6 +18,31 @@ const Body = () => {
     const handleNextStep = () => {
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
+        }
+        if (currentStep === 1) {
+            var from = document.getElementById("from").value
+            var to = document.getElementById("to").value
+            var date = document.getElementById("departureDate").value
+            var url = `http://localhost:8080/flight/search?origin=${from}&destination=${to}&date=${date}`
+            fetch(url, {
+                method: "GET",
+                mode:"cors",
+                headers: {
+                    "Content-Type":"application/json",
+                    "Accept":"application/json",
+                    'Access-Control-Allow-Origin':'*'
+                }
+            })
+                .then(res=>res.json())
+                .then(data=>{
+                    if (data !== null || data !== undefined) {
+                        console.log(data)
+                        // const options = data
+                        setFlights(data);
+                    }
+                })
+                .catch(error => console.error('There was a problem with the fetch operation:', error));
+            // console.log(url);
         }
     };
 
@@ -136,22 +162,34 @@ const Body = () => {
                         <div style={{ padding: '20px' }}>
                             <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Available Flights</h2>
                             <div className="flight-list">
-                                {mockFlights.map((flight, index) => (
+                                {flights.map((flight, index) => (
                                     <div
                                         key={index}
                                         className={`flight-card ${selectedFlight === flight ? 'selected' : ''}`}
                                         onClick={() => handleFlightSelect(flight)}
                                     >
                                         <div className="flight-logo">
-                                            <img src={flight.logo} alt={`${flight.name} logo`} />
+                                            {flight.airplaneID.airline.includes("Delta") && (
+                                            <img src= 'https://logos-world.net/wp-content/uploads/2021/08/Delta-Logo.png' alt={`${flight.name} logo`} />
+                                            )}
+                                            {flight.airplaneID.airline.includes("American") && (
+                                                <img src= 'https://logos-world.net/wp-content/uploads/2020/11/American-Airlines-Emblem.png' alt={`${flight.name} logo`} />
+                                            )}
+                                            {flight.airplaneID.airline.includes("United") && (
+                                                <img src= 'https://www.freepnglogos.com/uploads/united-airlines-logo-png-17.png' alt={`${flight.name} logo`} />
+                                            )}
+                                            {flight.airplaneID.airline.includes("Southwest") && (
+                                                <img src= 'https://logos-world.net/wp-content/uploads/2020/10/Southwest-Airlines-Emblem.png' alt={`${flight.name} logo`} />
+                                            )}
                                         </div>
                                         <div className="flight-info">
-                                            <h3>{flight.departureTime} - {flight.arrivalTime}</h3>
+                                            {/*{flight.startAirportCode.airportCode} - {flight.endAirportCode.airportCode} for*/}
+                                            <h3>{flight.departureTime.substring(0,10)} at {flight.departureTime.substring(11,19)}</h3>
                                             <p>{flight.name}</p>
-                                            <p>Total Time: {flight.totalTime}</p>
+                                            <p>Total Time: {flight.duration} minutes</p>
                                         </div>
                                         <div className="flight-price">
-                                            <h3>${flight.price}</h3>
+                                            <h3>${formData.numPeople*50}</h3>
                                         </div>
                                     </div>
                                 ))}
