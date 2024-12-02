@@ -6,7 +6,10 @@ public class ReservationRequestDTO {
 
     private Long passengerId;
     private Long flightId;
-    private List<Integer> seatNumbers;
+    private String cardType;
+    private String cardNumber;
+    private String cardCode;
+    private String zipcode;
 
     public Long getPassengerId() {
         return passengerId;
@@ -24,11 +27,35 @@ public class ReservationRequestDTO {
         this.flightId = flightId;
     }
 
-    public List<Integer> getSeatNumbers() {
-        return seatNumbers;
+    public String getCardType() {
+        return cardType;
     }
 
-    public void setSeatNumbers(List<Integer> seatNumbers) {
-        this.seatNumbers = seatNumbers;
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardCode() {
+        return cardCode;
+    }
+
+    public void setCardCode(String cardCode) {
+        this.cardCode = cardCode;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 }

@@ -25,10 +25,9 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<String> bookFlight(@RequestBody ReservationRequestDTO reservationRequestDTO){
-        if(reservationService.bookFlight(reservationRequestDTO))
-            return ResponseEntity.ok("Success");
-        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("its getting some error");
+    public ResponseEntity<String> createReservation(@RequestBody ReservationRequestDTO reservationRequestDTO){
+        Long reservationId = reservationService.createReservation(reservationDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(reservationId);
     }
 
     @GetMapping("/{passengerId}")

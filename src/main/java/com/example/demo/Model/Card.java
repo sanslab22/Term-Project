@@ -31,12 +31,20 @@ public class Card {
     @ManyToOne @JoinColumn(name = "reservationID")
     private Reservation reservation;
 
-    public Long getPaymentID() {
-        return paymentID;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setPaymentID(Long paymentID) {
-        this.paymentID = paymentID;
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 
     public String getCardType() {
@@ -71,11 +79,4 @@ public class Card {
         this.zipCode = zipCode;
     }
 
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
 }

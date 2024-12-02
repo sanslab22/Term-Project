@@ -1,13 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Model.Flight;
-import com.example.demo.Model.Passenger;
-import com.example.demo.Model.Reservation;
-import com.example.demo.Model.Ticket;
-import com.example.demo.Repository.FlightRepository;
-import com.example.demo.Repository.PassengerRepository;
-import com.example.demo.Repository.ReservationRepository;
-import com.example.demo.Repository.TicketRepository;
+import com.example.demo.Model.*;
+import com.example.demo.Repository.*;
 import com.example.demo.dto.ReservationRequestDTO;
 import com.example.demo.exception.FlightNotFoundException;
 import com.example.demo.exception.PassengerNotFoundException;
@@ -27,50 +21,58 @@ public class ReservationService {
     FlightRepository flightRepository;
     PassengerRepository passengerRepository;
     ReservationRepository reservationRepository;
+    CardRepository cardRepository;
 
     @Autowired
     public ReservationService(TicketRepository ticketRepository
             ,FlightRepository flightRepository
             ,PassengerRepository passengerRepository
-            ,ReservationRepository reservationRepository) {
+            ,ReservationRepository reservationRepository
+            ,CardRepository cardRepository) {
         this.ticketRepository = ticketRepository;
         this.flightRepository = flightRepository;
         this.passengerRepository = passengerRepository;
         this.reservationRepository = reservationRepository;
+        this.cardRepository = cardRepository;
     }
 
-    public Boolean bookFlight(ReservationRequestDTO reservationRequestDTO) {
-        Double unitprice = 50.0;
-        if (checkPassengerExists(reservationRequestDTO.getPassengerId())){
-            if(checkFlightExist(reservationRequestDTO.getFlightId())){
-                Double ticketPrice = reservationRequestDTO.getSeatNumbers().size() * unitprice;
-                Flight flight = getFlightById(reservationRequestDTO.getFlightId());
+    public Boolean createReservation(ReservationRequestDTO reservationRequestDTO) {
+        // Map DTO to Reservation entity
+        Reservation reservation = new Reservation();
+        reservation.setPassenger(new Passenger(reservationRequestDTO.getPassengerId()));
+        reservation.setTotalPrice(calculateTotalPrice(reservationRequestDTO.getFlightId(), reservationRequestDTO.getSeatNums()));
 
-                Optional<Passenger> optionalPassenger = passengerRepository.findById(reservationRequestDTO.getPassengerId());
-                if(optionalPassenger.isEmpty()){
-                    throw new PassengerNotFoundException("Passenger not found");
-                }else{
-                Passenger passenger = optionalPassenger.get();
+        // Save reservation to get the ID
+        reservation = reservationRepository.save(reservation);
 
-                List<Ticket> ticketList = new ArrayList<>();
-                List<Integer> seatList = reservationRequestDTO.getSeatNumbers();
-                    System.out.println(seatList);
-                for (Integer seat : seatList) {
-                    Ticket t = new Ticket(flight,seat, (long) 50L,passenger);
-                    ticketRepository.save(t);
-                    ticketList.add(t);
-                }
-                Reservation reservation = new Reservation(ticketList,passenger,ticketPrice);
-                reservationRepository.save(reservation);
-                return true;
-                }
-            }else{
-                new FlightNotFoundException("Incorrect Flight Id");
-            }
-        }else{
-            new PassengerNotFoundException("Invalid PassengerId");
+        // Create and save Card entity
+        Card card = new Card();
+        card.setCardType(reservationRequestDTO.getCardType());
+        card.setCardNumber(reservationRequestDTO.getCardNumber());
+        card.setCardCode(reservationRequestDTO.getCardCode());
+        card.setZipCode(reservationRequestDTO.getZipcode());
+        card.setReservation(reservation);
+        cardRepository.save(card);
+
+        / Create Tickets associated with the Reservation
+        List<Ticket> tickets = new ArrayList<>();
+        for (String seatNum : seatNumbers) {
+            Ticket ticket = new Ticket();
+            ticket.setSeatNumber(seatNum);
+            ticket.setReservation(reservation); // Associate ticket with the reservation
+            tickets.add(ticket);
         }
-        return false;
+        ticketRepository.saveAll(tickets);
+
+        // Return the Reservation ID as the response
+        return reservation.getReservationID();
+    }
+
+    }
+
+    private Double calculateTotalPrice(Long flightId, List<String> seatNums) {
+        // Example: Base price + seat count * seat multiplier
+        return 100.0 + seatNums.size() * 20.0; // Replace with your calculation logic
     }
 
     private boolean checkFlightExist(Long flightId) {

@@ -12,8 +12,8 @@ import java.util.List;
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
    // @Query("Select  f from Flight f where f.departureAirportCode = ?1 and f.destinationAirportCode = ?2 and f.departureTime >= ?3")
-   @Query("SELECT f FROM Flight f WHERE f.departure.airportCode = ?1 " +
-           "AND f.destination.airportCode = ?2 " +
+   @Query("SELECT f FROM Flight f WHERE f.startAirportCode = ?1 " +
+           "AND f.endAirportCode = ?2 " +
            "AND f.departureTime >= ?3")
     List<Flight> findFlightByOrginDestinationDepartureTime(
             String origin,

@@ -52,20 +52,20 @@ public class Flight {
         this.airplaneID = airplaneID;
     }
 
-    public Airport getDeparture() {
-        return departure;
+    public Airport getStartAirportCode() {
+        return startAirportCode;
     }
 
-    public void setDeparture(Airport departure) {
-        this.departure = departure;
+    public void setStartAirportCode(Airport startAirportCode) {
+        this.startAirportCode = startAirportCode;
     }
 
-    public Airport getDestination() {
-        return destination;
+    public Airport getEndAirportCode() {
+        return endAirportCode;
     }
 
-    public void setDestination(Airport destination) {
-        this.destination = destination;
+    public void setEndAirportCode(Airport endAirportCode) {
+        this.endAirportCode = endAirportCode;
     }
 
     public Timestamp getDepartureTime() {
