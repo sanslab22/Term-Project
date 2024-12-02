@@ -20,6 +20,7 @@ const Res = (reservations) => {
         <div>
             <h2>Booking Summary</h2>
             {reservations.reservations.map((reservation, index) => (
+                reservation.tickets.length > 0 && (
             <div key = {index} className="flight-summary">
                     <div className="user-summary">
                         <p>
@@ -52,6 +53,7 @@ const Res = (reservations) => {
                 <p><strong>Price:</strong> ${ reservation.totalPrice}</p>
             </div>
                 </div>
+                )
 ))}
         </div>
     )
