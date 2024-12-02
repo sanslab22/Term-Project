@@ -27,10 +27,6 @@ public class Reservation {
     @JoinColumn(name = "passengerID")
     private Passenger passenger;
 
-//    @ManyToOne
-//    @JoinColumn(name = "flightID")
-//    private Flight flightID;
-
     @Column(name = "totalPrice", nullable = false)
     private Double totalPrice;
 
@@ -48,6 +44,50 @@ public class Reservation {
 
     @Column (name = "expirationDate",nullable = false)
     private String expirationDate;
+
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardCode() {
+        return cardCode;
+    }
+
+    public void setCardCode(String cardCode) {
+        this.cardCode = cardCode;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+//    @JoinColumn(name = "flightID")
+//    private Flight flightID;
+
 
 
     public Reservation() {
