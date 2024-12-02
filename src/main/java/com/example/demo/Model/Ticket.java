@@ -62,13 +62,13 @@ public class Ticket {
         this.flight = flight;
     }
 
-//    public Reservation getReservation() {
-//        return reservation;
-//    }
-//
-//    public void setReservation(Reservation reservation) {
-//        this.reservation = reservation;
-//    }
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 
     public Integer getSeatNumber() {
         return seatNumber;
@@ -92,5 +92,22 @@ public class Ticket {
 //
 //    public void setPassenger(Passenger passenger) {
 //        this.passenger = passenger;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 //    }
 } // Ticket

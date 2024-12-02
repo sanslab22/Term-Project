@@ -10,6 +10,15 @@ public class ReservationRequestDTO {
     private String cardNumber;
     private String cardCode;
     private String zipcode;
+    private String expiryDate;
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
     public Long getPassengerId() {
         return passengerId;
