@@ -20,7 +20,7 @@ public class PassengerController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> registerPassenger(@RequestBody com.example.demo.DTO.RegisterPassengerRequestDTO request){
+    public ResponseEntity<String> registerPassenger(@RequestBody com.example.demo.dto.RegisterPassengerRequestDTO request){
         try {
             passengerService.registerPassenger(request);
             return ResponseEntity.status(201).body("Passenger account created successfully.");

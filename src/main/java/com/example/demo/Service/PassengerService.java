@@ -2,7 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Model.Passenger;
 import com.example.demo.Model.Reservation;
-import com.example.demo.DTO.RegisterPassengerRequestDTO;
+import com.example.demo.dto.RegisterPassengerRequestDTO;
 import com.example.demo.Repository.PassengerRepository;
 import com.example.demo.exception.PassengerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
