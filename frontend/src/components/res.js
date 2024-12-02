@@ -20,7 +20,7 @@ const Res = (reservations) => {
         <div>
             <h2>Booking Summary</h2>
             {reservations.reservations.map((reservation, index) => (
-                reservation.tickets.length > 0 && (
+                reservation.tickets.length === reservation.totalPrice/50 && (
             <div key = {index} className="flight-summary">
                     <div className="user-summary">
                         <p>

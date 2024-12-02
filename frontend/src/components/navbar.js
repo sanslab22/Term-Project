@@ -29,6 +29,9 @@ const NavBar = ({ onLogout,userID,setReservations }) => {
             .then(data=>{
                 {
                     setReservations(data)
+                    if (data.length === 0) {
+                        alert("Please book a reservation")
+                    }
                     console.log(data)
                 }
             })
