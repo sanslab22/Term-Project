@@ -27,9 +27,9 @@ public class Reservation {
     @JoinColumn(name = "passengerID")
     private Passenger passenger;
 
-    @ManyToOne
-    @JoinColumn(name = "flightID")
-    private Flight flightID;
+//    @ManyToOne
+//    @JoinColumn(name = "flightID")
+//    private Flight flightID;
 
     @Column(name = "totalPrice", nullable = false)
     private Double totalPrice;

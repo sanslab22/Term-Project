@@ -3,7 +3,7 @@ import Home from './components/home';  // Import Home component
 import Navbar from './components/navbar';  // Import Navbar component
 import Body from './components/body';  // Import Body component
 import Footer from './components/footer';  // Import Footer component
-import res from './components/res'
+import Res from './components/res';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);  // State to track login status
@@ -26,7 +26,7 @@ function App() {
                     <Navbar setReservations = {setReservations} userID = {user} onLogout={handleLogout} />  {/* Pass logout function to Navbar */}
 
                     {reservations.length < 1 && <Body  />}   {/* Show the Body component when logged in */}
-                    {reservations.length > 1 && <res reservations = {reservations} />}   {/* Show the Body component when logged in */}
+                    {reservations.length >= 1 &&  <Res reservations = {reservations} />}   {/* Show the Body component when logged in */}
 
                 </>
             ) : (
