@@ -27,8 +27,28 @@ public class Reservation {
     @JoinColumn(name = "passengerID")
     private Passenger passenger;
 
+//    @ManyToOne
+//    @JoinColumn(name = "flightID")
+//    private Flight flightID;
+
     @Column(name = "totalPrice", nullable = false)
     private Double totalPrice;
+
+    @Column (name = "cardType", nullable = false)
+    private String cardType;
+
+    @Column (name = "cardNumber",nullable = false)
+    private String cardNumber;
+
+    @Column (name = "cardCode",nullable = false)
+    private String cardCode;
+
+    @Column (name = "zipCode",nullable = false)
+    private String zipCode;
+
+    @Column (name = "expirationDate",nullable = false)
+    private String expirationDate;
+
 
     public Reservation() {
 

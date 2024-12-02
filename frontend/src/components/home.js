@@ -11,6 +11,7 @@ import image6 from '../images/image6.jpg';
 const Home = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
+    const [userID,setUserID] = useState(101);
     const [password, setPassword] = useState('');
     const [confirm_password, setCPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);

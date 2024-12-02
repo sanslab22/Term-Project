@@ -11,7 +11,7 @@ public class Ticket {
         this.flight = flight;
         this.seatNumber = seatNumber;
         this.unitPrice = unitPrice;
-        this.passenger = passenger;
+//        this.passenger = passenger;
     }
 
     @Id
@@ -33,9 +33,14 @@ public class Ticket {
     @Column(nullable = false)
     private Long unitPrice = 50L;
 
-    @ManyToOne
-    @JoinColumn(name = "passengerID")
-    private Passenger passenger;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
+//    @ManyToOne
+//    @JoinColumn(name = "passengerID")
+//    private Passenger passenger;
 
     public Ticket() {
 
@@ -81,11 +86,11 @@ public class Ticket {
         this.unitPrice = unitPrice;
     }
 
-    public Passenger getPassenger() {
-        return passenger;
-    }
-
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
-    }
+//    public Passenger getPassenger() {
+//        return passenger;
+//    }
+//
+//    public void setPassenger(Passenger passenger) {
+//        this.passenger = passenger;
+//    }
 } // Ticket

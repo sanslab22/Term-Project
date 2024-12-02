@@ -33,11 +33,11 @@ public class Passenger {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany
-    @JoinTable( name = "passenger_payment",
-            joinColumns = @JoinColumn(name = "passengerID"),
-            inverseJoinColumns = @JoinColumn(name = "paymentID") )
-    private List<Card> payments = new ArrayList<Card>();
+//    @ManyToMany
+//    @JoinTable( name = "passenger_payment",
+//            joinColumns = @JoinColumn(name = "passengerID"),
+//            inverseJoinColumns = @JoinColumn(name = "paymentID") )
+//    private List<Card> payments = new ArrayList<Card>();
 
 
     public Long getPassengerID() {
@@ -72,13 +72,13 @@ public class Passenger {
         this.email = email;
     }
 
-    public List<Card> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(List<Card> payments) {
-        this.payments = payments;
-    }
+//    public List<Card> getPayments() {
+//        return payments;
+//    }
+//
+//    public void setPayments(List<Card> payments) {
+//        this.payments = payments;
+//    }
 
     public String getPassword() {
         return password;

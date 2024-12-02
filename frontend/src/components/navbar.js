@@ -4,17 +4,43 @@ import { MdMenuBook } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi"; 
 import logo from '../images/logo.png';
 
-const NavBar = ({ onLogout }) => {
+const NavBar = ({ onLogout,userID,setReservations }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
 
+    const resetHandler = () => {
+        setReservations([]);
+    }
+
+    const handleBookedClick = () => {
+        fetch(`http://localhost:8080/reservation/${userID}`, {
+            method: "GET",
+                mode:"cors",
+                headers: {
+                "Content-Type":"application/json",
+                    "Accept":"application/json",
+                    'Access-Control-Allow-Origin':'*'
+            }
+        })
+            .then(res=>res.json())
+            .then(data=>{
+                {
+                    setReservations(data)
+                    if (data.length === 0) {
+                        alert("Please book a reservation")
+                    }
+                    console.log(data)
+                }
+            })
+    }
+
     return (
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 20px', backgroundColor: '#F0F8FF' }}>
             {/* Left Section: Logo and Text */}
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div onClick = {resetHandler} style={{ display: 'flex', alignItems: 'center' }}>
                 <img 
                     src={logo} 
                     alt="Logo" 
@@ -57,7 +83,7 @@ const NavBar = ({ onLogout }) => {
                 onMouseLeave={(e) => e.target.style.background = '#ffffff'}
             >
                 <MdMenuBook style={{ marginRight: '10px' }} />
-                <p style={{ margin: 0 }}>Booked</p>
+                <p onClick={handleBookedClick} style={{ margin: 0 }}>Booked</p>
             </div>
             <div 
                 style={{ 
