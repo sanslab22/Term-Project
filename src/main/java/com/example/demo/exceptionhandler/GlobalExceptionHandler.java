@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
     }
 
     public ResponseEntity<String> handleParseException(ParseException ex){
-        return new ResponseEntity<>(ex.getMessage()+"Some proble with the date conversion", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ex.getMessage()+"Some problem with the date conversion", HttpStatus.BAD_REQUEST);
     }
+
 }

@@ -1,17 +1,18 @@
 package com.example.demo.Controller;
 
+
 import com.example.demo.dto.LoginRequestDTO;
 import com.example.demo.exception.InvalidCredentialsException;
 import com.example.demo.security.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
@@ -24,7 +25,7 @@ public class AuthController {
      * Response: { "token": "<generated JWT token here>" }
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         try {
             String token = authService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
             return ResponseEntity.ok().body("{\"token\": \"" + token + "\"}");

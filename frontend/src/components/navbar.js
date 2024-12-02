@@ -37,6 +37,12 @@ const NavBar = ({ onLogout,userID,setReservations }) => {
             })
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        onLogout();
+        alert("Logged out successfully!");
+    }
+
     return (
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 20px', backgroundColor: '#F0F8FF' }}>
             {/* Left Section: Logo and Text */}
@@ -94,7 +100,7 @@ const NavBar = ({ onLogout,userID,setReservations }) => {
                 }} 
                 onMouseEnter={(e) => e.target.style.background = '#F0FFFF'}
                 onMouseLeave={(e) => e.target.style.background = '#ffffff'}
-                onClick={onLogout}
+                onClick={handleLogout}
             >
                 <FiLogOut style={{ marginRight: '10px' }} />
                 <p style={{ margin: 0 }}>LogOut</p>
