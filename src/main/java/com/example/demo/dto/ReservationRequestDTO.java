@@ -5,7 +5,6 @@ import java.util.List;
 public class ReservationRequestDTO {
 
     private Long passengerId;
-    private Long flightId;
     private String cardType;
     private String cardNumber;
     private String cardCode;
@@ -26,14 +25,6 @@ public class ReservationRequestDTO {
 
     public void setPassengerId(Long passengerId) {
         this.passengerId = passengerId;
-    }
-
-    public Long getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
     }
 
     public String getCardType() {

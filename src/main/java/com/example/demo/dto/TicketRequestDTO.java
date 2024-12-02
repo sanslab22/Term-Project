@@ -16,6 +16,17 @@ public class TicketRequestDTO {
     @NotNull(message = "Seat Number cannot be null")
     private Integer seatNum;
 
+    @NotNull(message = "flight Number cannot be null")
+    private Long flightId;
+
+    public @NotNull(message = "flight Number cannot be null") Long getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(@NotNull(message = "flight Number cannot be null") Long flightId) {
+        this.flightId = flightId;
+    }
+
     public @NotNull(message = "ReservationID cannot be null") Long getReservationID() {
         return reservationID;
     }
