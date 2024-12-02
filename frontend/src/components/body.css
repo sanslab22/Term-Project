@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #F0F8FF;
     font-family: Arial, sans-serif;
     overflow: auto; /* Allow scrolling when content overflows */
 }
@@ -62,11 +63,6 @@ body {
     color: #1C1C1C;
 }
 
-.step:hover {
-    background-color: #e0f7fa;
-    border-color: #1C1C1C;
-    color: #1C1C1C;
-}
 
 /* Step Content */
 .step-content {
@@ -311,4 +307,138 @@ button:hover {
 .flight-sum {
     border-left: 2px solid #0088ff; /* Add a border to separate the two sections */
     padding-left: 20px; /* Space between border and content */
+}
+
+.passenger-input-row {
+    margin-bottom: 15px; /* Adds spacing between each passenger input row */
+}
+
+.passenger-names {
+    display: flex;
+    gap: 10px; /* Adds space between the first and last name boxes */
+    width: 50%; /* Restrict to half the screen width */
+    justify-content: space-between; /* Evenly space out the boxes */
+}
+
+.passenger-names input[type="text"] {
+    flex: 1; /* Ensures both boxes take equal width within their container */
+    padding: 10px; /* Increased padding for a better height */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 40px; /* Set a fixed height to match other inputs */
+}
+
+.input-people {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Equal width for all input groups */
+    position: relative;
+    min-width: 250px;
+}
+
+.input-people input[type="number"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+}
+
+.input-people label {
+    margin-bottom: 5px;
+    font-family: Verdana, sans-serif;
+}
+
+
+.ticket-container {
+    background-color: #F0F8FF;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%; /* Adjust width as needed */
+    margin: 20px auto;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.ticket-header .from-to span {
+    display: block;
+    font-size: 16px;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ticket-details p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.ticket-id {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.passenger-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.passenger-box {
+    background-color: #E6F7FF;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    flex: 1 1 45%; /* Adjusts width for two columns */
+    text-align: center;
+    font-size: 14px;
+}
+
+.passenger-box p {
+    margin: 0;
+}
+
+.from-to {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Ensures items are vertically centered */
+    font-size: 18px; /* Increase font size */
+    margin-bottom: 15px; /* Add margin if needed */
+    gap: 900px;
+}
+
+.from-to span {
+    flex: 1; /* Ensures even spacing between "From" and "To" */
+    text-align: center; /* Centers the text */
+    white-space: nowrap;
+}
+
+.backtopage1 {
+    background-color: aliceblue;
+    border: 2px solid darkblue; /* Fixed the border color issue */
+    color: black; /* Sets the text color to black */
+    padding: 10px 20px; /* Adds padding for a better button size */
+    font-size: 16px; /* Adjusts font size for readability */
+    text-align: center; /* Centers the text within the button */
+    border-radius: 5px; /* Rounds the corners slightly */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    display: inline-block; /* Keeps the button inline for centering */
+    margin: 10px auto; /* Centers the button horizontally */
+}
+
+.backtopage1:hover {
+    background-color: #DCE9F6; /* Changes to a darker Alice Blue shade on hover */
 }
