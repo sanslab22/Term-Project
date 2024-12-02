@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequestMapping("/flight")
 public class FlightController {
 
     FlightService flightService;
@@ -20,7 +21,7 @@ public class FlightController {
         this.flightService = flightService;
     }
 
-    @GetMapping("/flight/search")
+    @GetMapping("/search")
     public ResponseEntity<List<Flight>> retriveFlights(
             @RequestParam String origin,
             @RequestParam String destination,

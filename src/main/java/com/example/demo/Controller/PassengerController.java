@@ -31,6 +31,7 @@ public class PassengerController {
 
     @GetMapping("/{passengerId}")
     public ResponseEntity<Passenger> getUserData(@PathVariable Long passengerId){
+        System.out.println("i am in get user data class");
         Passenger passenger = passengerService.getPassengerData(passengerId);
         return ResponseEntity.ok(passenger);
     }

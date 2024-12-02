@@ -40,39 +40,49 @@ public class ReservationService {
     }
 
     public Boolean bookFlight(ReservationRequestDTO reservationRequestDTO) {
-        Double unitprice = 50.0;
-        if (checkPassengerExists(reservationRequestDTO.getPassengerId())){
-            if(checkFlightExist(reservationRequestDTO.getFlightId())){
-                Double ticketPrice = reservationRequestDTO.getSeatNumbers().size() * unitprice;
-                Flight flight = getFlightById(reservationRequestDTO.getFlightId());
+        Double unitPrice = 50.0;
 
-                Optional<Passenger> optionalPassenger = passengerRepository.findById(reservationRequestDTO.getPassengerId());
-                if(optionalPassenger.isEmpty()){
-                    throw new PassengerNotFoundException("Passenger not found");
-                }else{
-                Passenger passenger = optionalPassenger.get();
-
-                List<Ticket> ticketList = new ArrayList<>();
-                List<Integer> seatList = reservationRequestDTO.getSeatNumbers();
-                    System.out.println(seatList);
-                for (Integer seat : seatList) {
-                    Ticket t = new Ticket(flight,seat, (long) 50L,passenger);
-                    ticketRepository.save(t);
-                    ticketList.add(t);
-                }
-                Reservation reservation = new Reservation(ticketList,passenger,ticketPrice);
-                reservationRepository.save(reservation);
-                return true;
-                }
-            }else{
-                new FlightNotFoundException("Incorrect Flight Id");
-            }
-        }else{
-            new PassengerNotFoundException("Invalid PassengerId");
+        // Validate passenger existence
+        if (!checkPassengerExists(reservationRequestDTO.getPassengerId())) {
+            throw new PassengerNotFoundException("Invalid Passenger ID");
         }
-        return false;
-    }
 
+        // Validate flight existence
+        if (!checkFlightExist(reservationRequestDTO.getFlightId())) {
+            throw new FlightNotFoundException("Incorrect Flight ID");
+        }
+
+        // Calculate total ticket price
+        Double ticketPrice = reservationRequestDTO.getSeatNumbers().size() * unitPrice;
+
+        // Fetch the passenger
+        Passenger passenger = passengerRepository.findById(reservationRequestDTO.getPassengerId())
+                .orElseThrow(() -> new PassengerNotFoundException("Passenger not found"));
+
+        // Fetch the flight
+        Flight flight = getFlightById(reservationRequestDTO.getFlightId());
+
+        // Create a reservation (placeholder, no tickets yet)
+        Reservation reservation = new Reservation();
+        reservation.setPassenger(passenger);
+        reservation.setTotalPrice(ticketPrice);
+        reservation = reservationRepository.save(reservation); // Save to generate reservation ID
+
+        // Book tickets and associate with the reservation
+        List<Ticket> ticketList = new ArrayList<>();
+        for (Integer seat : reservationRequestDTO.getSeatNumbers()) {
+            Ticket ticket = new Ticket(flight, seat, unitPrice.longValue(), passenger);
+            ticket.setReservation(reservation); // Link ticket to reservation
+            ticketRepository.save(ticket); // Persist ticket
+            ticketList.add(ticket);
+        }
+
+        // Update reservation with ticket list
+        reservation.setTickets(ticketList);
+        reservationRepository.save(reservation); // Save updated reservation
+
+        return true;
+    }
     private boolean checkFlightExist(Long flightId) {
         System.out.println("I am running");
         return flightRepository.existsById(flightId);
@@ -91,4 +101,8 @@ public class ReservationService {
     public List<Reservation> viewReservation(Long passengerId) {
         return reservationRepository.viewReservations(passengerId);
     }
+
 }
+
+
+
