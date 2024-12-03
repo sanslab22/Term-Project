@@ -464,7 +464,12 @@ const Body = (reservation) => {
                             <form className="payment-form">
                                 <div className="input-group">
                                     <label htmlFor="card-type">Card Type:</label>
-                                    <input type="text" id="card-type" placeholder="Enter Card Type"/>
+                                    <select name="card" id="card-type">
+                                        <option value="Visa">Visa</option>
+                                        <option value="Mastercard">Mastercard</option>
+                                        <option value="American Express">American Express</option>
+                                        <option value="Discover">Discover</option>
+                                    </select>
                                 </div>
                                 <div className="input-group">
                                     <label htmlFor="card-number">Card Number:</label>
