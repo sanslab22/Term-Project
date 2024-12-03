@@ -10,11 +10,11 @@ The Flight E-Booking Application, SkyDeals, is a comprehensive platform designed
 
 - **User Roles**
   
-    Catering to individuals that interested in learning about full-stack development.
+    Catering to individuals that are interested in learning about full-stack development.
   
 - **Key Goals**
 
-    - _Secure Data Management_: Passenger accounts store sensitive information securely, including optional payment details.
+    - _Secure Data Management_: Passenger accounts store sensitive information securely, including payment details.
     - _Efficient Booking System_: Allows customers to browse flights, make reservations, and receive instant updates.
     - _Scalable Database Design_: Robust database schema with structured data for flights, payments, reservations, and more.
       
@@ -43,6 +43,12 @@ For testing purposes:
 - Database: MySQL Workbench
 - API Endpoints: Postman (port 8080)
 
+SQL Workbench Setup:
+
+- NOTE: `src/main/resources/application.properties` defines the schema name
+- Example: `spring.datasource.url=jdbc:mysql://localhost:3306/**<enter_schema_name_here>**`
+- Create a new schema on MySQL Workbench and make sure it matches the name from application.properties
+
 ## Technologies Used
 
 - Frontend: React
@@ -54,13 +60,13 @@ For testing purposes:
 1. You can download the Zip file and extract it
 2. Open the project in you preferred IDE with the root folder named `Arun_TermProject`
 3. Navigate to `src/main/resources/application.properties`
-4. Modify the following based on your the setup of MySQL:
+4. Modify the following based on your the setup of MySQL: make sure schema name on application.properties is same as MySQL Workbench
    1. `spring.datasource.username= <your_username>`
    2. `spring.datasource.password= <your_password>`
    3. `jwt.secret.key= <your_password>`
-5. Run the backend by clicking on the run icon in IDE
-6. Check the build terminal, to see if the Spring Boot project is running (API endpoints on localhost:8080, MySQL on port 3306)
-7. Open Terminal on IDE and enter the following:
+6. Run the backend by clicking on the run icon in IDE
+7. Check the build terminal, to see if the Spring Boot project is running (API endpoints on localhost:8080, MySQL on port 3306)
+8. Open Terminal on IDE and enter the following:
    1. Enter `pwd` to verify that your path is currently `/Arun_TermProject`
    2. Enter `cd frontend/` - navigates to the React frontend
    3. Enter `npm install` - installs all the necessary dependencies
@@ -68,6 +74,12 @@ For testing purposes:
    5. Then enter `npm start` - start the localhost:3030 server
 9. Once both the frontend and backend are running, the project is up and running successfully.
 
+## Flight Table
+
+- This table only contains 8 flight all for Nov 20, 2024
+    - <img width="569" alt="image" src="https://github.com/user-attachments/assets/fcab6d92-374b-454d-834e-c89206f83381">
+
+  
 ## Authors
 
     - Sanjana Arun
