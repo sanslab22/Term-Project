@@ -14,9 +14,9 @@ The Flight E-Booking Application, SkyDeals, is a comprehensive platform designed
   
 - **Key Goals**
 
-    - Secure Data Management: Passenger accounts store sensitive information securely, including optional payment details.
-    - Efficient Booking System: Allows customers to browse flights, make reservations, and receive instant updates.
-    - Scalable Database Design: Robust database schema with structured data for flights, payments, reservations, and more.
+    - _Secure Data Management_: Passenger accounts store sensitive information securely, including optional payment details.
+    - _Efficient Booking System_: Allows customers to browse flights, make reservations, and receive instant updates.
+    - _Scalable Database Design_: Robust database schema with structured data for flights, payments, reservations, and more.
       
 - **Database Structure**
   
