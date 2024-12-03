@@ -89,10 +89,27 @@ const Body = (reservation) => {
             })
                 .then(res=>res.json())
                 .then(data=>{
-                    if (data !== null || data !== undefined) {
+                    if (data.length > 0) {
                         console.log(data)
                         // const options = data
                         setFlights(data);
+                    }
+                    else {
+                        alert("No Flights Found")
+                        setCurrentStep(1);
+                        setCurrentStep(1)
+                        setFlights([])
+                        setPeople([])
+                        setSelectedFlight(null)
+                        setFormData({
+                            from: '',
+                            to: '',
+                            departureDate: '',
+                            departureTime: '',
+                            seatClass: 'economy',  // Default to Economy
+                            numPeople: 1,
+                            passengerNames: [{ firstName: '', lastName: '' }]
+                        });
                     }
                 })
                 .catch(error => console.error('There was a problem with the fetch operation:', error));
