@@ -59,7 +59,7 @@ For testing purposes:
    2. `spring.datasource.password= <your_password>`
    3. `jwt.secret.key= <your_password>`
 5. Run the backend by clicking on the run icon in IDE
-6. Check the build terminal, to see if the Spring Boot project is running
+6. Check the build terminal, to see if the Spring Boot project is running (API endpoints on localhost:8080, MySQL on port 3306)
 7. Open Terminal on IDE and enter the following:
    1. Enter `pwd` to verify that your path is currently `/Arun_TermProject`
    2. Enter `cd frontend/` - navigates to the React frontend
