@@ -77,7 +77,7 @@ SQL Workbench Setup:
 ## Flight Table
 
 - This table only contains 8 flight all for Nov 20, 2024
-    <img width="569" alt="image" src="https://github.com/user-attachments/assets/fcab6d92-374b-454d-834e-c89206f83381">
+    - <img width="569" alt="image" src="https://github.com/user-attachments/assets/fcab6d92-374b-454d-834e-c89206f83381">
 
   
 ## Authors
