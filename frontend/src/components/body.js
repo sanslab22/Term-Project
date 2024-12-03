@@ -7,9 +7,9 @@ const Body = (reservation) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [flights,setFlights] = useState([]);
     // const [seats,setSeats] = useState([]);
-    const[myFlight,setMyFlight] = useState()
+    // const[myFlight,setMyFlight] = useState()
     const [people, setPeople] = useState([])
-    const [numPeople,setNumPeople] = useState(1)
+    // const [numPeople,setNumPeople] = useState(1)
 
     const [formData, setFormData] = useState({
         from: '',
@@ -47,11 +47,26 @@ const Body = (reservation) => {
         const payloadObject = JSON.parse(decodedPayload);
         return payloadObject;
     }
+    const backtopage1 =  () => {
+        setCurrentStep(1)
+        setFlights([])
+        setPeople([])
+        setSelectedFlight(null)
+        setFormData({
+            from: '',
+            to: '',
+            departureDate: '',
+            departureTime: '',
+            seatClass: 'economy',  // Default to Economy
+            numPeople: 1,
+            passengerNames: [{ firstName: '', lastName: '' }]
+        });
+    }
 
     const handleNextStep = () => {
         if (currentStep === 1) {
-            setNumPeople(document.getElementById("numPeople").value)
-            console.log(numPeople)
+            // setNumPeople(document.getElementById("numPeople").value)
+            // console.log(numPeople)
             setPeople(formData.passengerNames)
             console.log(people)
         }
@@ -83,16 +98,17 @@ const Body = (reservation) => {
                 .catch(error => console.error('There was a problem with the fetch operation:', error));
             // console.log(url);
         }
-        if (currentStep === 2) {
-            console.log(selectedFlight.flightID)
-            setMyFlight(selectedFlight.flightID)
-            console.log(myFlight)
-        }
+        // if (currentStep === 2) {
+        //     console.log(selectedFlight.flightID)
+        //     setMyFlight(selectedFlight.flightID)
+        //     console.log(myFlight)
+        // }
         if (currentStep === 3) {
             console.log(people)
             console.log(decodeJWT(localStorage.getItem("token")))
             var passenger = decodeJWT(localStorage.getItem("token")).passengerID
-            var totalPrice = numPeople*50
+            // var totalPrice = numPeople*50
+            var totalPrice = people.length*50
             var cardType = document.getElementById("card-type").value
             var cardNumber = document.getElementById("card-number").value
             var cardCode = document.getElementById("cvv").value
@@ -492,7 +508,7 @@ const Body = (reservation) => {
                             </div>
                             <div style={{textAlign: "center"}}>
                                 <button className="backtopage1"
-                                        onClick={() => setCurrentStep(1)}
+                                        onClick={backtopage1}
                                 >
                                     Return to the Home Page
                                 </button>
