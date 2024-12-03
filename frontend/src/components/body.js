@@ -171,6 +171,21 @@ const Body = (reservation) => {
 
     const handlePreviousStep = () => {
         if (currentStep > 1) {
+            if (currentStep === 2) {
+                setCurrentStep(1)
+                setFlights([])
+                setPeople([])
+                setSelectedFlight(null)
+                setFormData({
+                    from: '',
+                    to: '',
+                    departureDate: '',
+                    departureTime: '',
+                    seatClass: 'economy',  // Default to Economy
+                    numPeople: 1,
+                    passengerNames: [{ firstName: '', lastName: '' }]
+                });
+            }
             setCurrentStep(currentStep - 1);
         }
     };
