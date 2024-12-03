@@ -47,20 +47,20 @@ INSERT INTO Airplane (airplaneId,airline, planeModel, capacity) VALUES
                                                                     (09,'Hawaiian Airlines', 'Airbus A330', 278),
                                                                     (10,'Allegiant Air', 'Airbus A319', 156);
 
-CREATE TABLE IF NOT EXISTS Passenger (
-                                         passengerID BIGINT NOT NULL AUTO_INCREMENT,
-                                         name VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    PRIMARY KEY (passengerID)
-    );
-INSERT INTO Passenger (passengerID,name, phoneNumber, email) VALUES
-                                                                 (101,'John Doe', '123-456-7890', 'john.doe@example.com'),
-                                                                 (102,'Jane Smith', '234-567-8901', 'jane.smith@example.com'),
-                                                                 (103,'Alice Johnson', '345-678-9012', 'alice.johnson@example.com'),
-                                                                 (104,'Bob Brown', '456-789-0123', 'bob.brown@example.com'),
-                                                                 (105,'Charlie Davis', '567-890-1234', 'charlie.davis@example.com'),
-                                                                 (106,'Diana Evans', '678-901-2345', 'diana.evans@example.com');
+-- CREATE TABLE IF NOT EXISTS Passenger (
+--                                          passengerID BIGINT NOT NULL AUTO_INCREMENT,
+--                                          name VARCHAR(255) NOT NULL,
+--     phoneNumber VARCHAR(255) NOT NULL,
+--     email VARCHAR(255) NOT NULL,
+--     PRIMARY KEY (passengerID)
+--     );
+-- INSERT INTO Passenger (passengerID,name, phoneNumber, email) VALUES
+--                                                                  (101,'John Doe', '123-456-7890', 'john.doe@example.com'),
+--                                                                  (102,'Jane Smith', '234-567-8901', 'jane.smith@example.com'),
+--                                                                  (103,'Alice Johnson', '345-678-9012', 'alice.johnson@example.com'),
+--                                                                  (104,'Bob Brown', '456-789-0123', 'bob.brown@example.com'),
+--                                                                  (105,'Charlie Davis', '567-890-1234', 'charlie.davis@example.com'),
+--                                                                  (106,'Diana Evans', '678-901-2345', 'diana.evans@example.com');
 -- CREATE TABLE Reservation (
 --                              reservationID BIGINT AUTO_INCREMENT PRIMARY KEY,
 --                              passengerID BIGINT,
