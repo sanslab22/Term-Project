@@ -50,7 +50,7 @@ public class ReservationService {
         reservation.setCardCode(reservationRequestDTO.getCardCode());
         reservation.setZipCode(reservationRequestDTO.getZipcode());
         reservation.setExpirationDate(reservationRequestDTO.getExpiryDate());
-        reservation.setTotalPrice(0.0); // Default totalPrice for now
+        reservation.setTotalPrice(reservationRequestDTO.getTotalPrice()); // Default totalPrice for now
 
         // Save and return the Reservation ID
         Reservation savedReservation = reservationRepository.save(reservation);

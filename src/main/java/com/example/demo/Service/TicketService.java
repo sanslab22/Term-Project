@@ -41,6 +41,7 @@ public class TicketService {
         ticket.setLastName(ticketRequestDTO.getLastName());
         ticket.setSeatNumber(ticketRequestDTO.getSeatNum());
         ticket.setFlight(flight);
+        ticket.setUnitPrice(ticketRequestDTO.getUnitPrice());
 
         // Save the ticket and return the ticket ID
         Ticket savedTicket = ticketRepository.save(ticket);

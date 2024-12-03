@@ -7,14 +7,24 @@ import Res from './components/res';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);  // State to track login status
-    const [user,setUser] = useState(101);
+    const [user,setUser] = useState(0);
     const [reservations, setReservations] = useState ([])
     const handleLogin = () => {
         setIsLoggedIn(true);  // Set login state to true
     };
-
+    function decodeJWT(token) {
+        // Split the token into its parts
+        const parts = token.split('.');
+        // Decode the payload (second part)
+        const payload = parts[1];
+        const decodedPayload = atob(payload);
+        // Parse the JSON string
+        const payloadObject = JSON.parse(decodedPayload);
+        return payloadObject;
+    }
     const handleLogout = () => {
-        setIsLoggedIn(false);  // Set login state to false (log out)
+        setIsLoggedIn(false);
+        setUser(0)// Set login state to false (log out)
     };
 
     return (
@@ -31,7 +41,7 @@ function App() {
                 </>
             ) : (
                 <>
-                    <Home onLogin={handleLogin} />  {/* Pass login function to Home */}
+                    <Home setUser={setUser} onLogin={handleLogin} />  {/* Pass login function to Home */}
                     <Footer />  {/* Footer is always visible */}
                 </>
             )}

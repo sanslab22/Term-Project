@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="Ticket")
 public class Ticket {
-    public Ticket(Flight flight, Integer seatNumber, Long unitPrice, Passenger passenger) {
+    public Ticket(Flight flight, String seatNumber, Double unitPrice, Passenger passenger) {
         this.flight = flight;
         this.seatNumber = seatNumber;
         this.unitPrice = unitPrice;
@@ -29,11 +29,11 @@ public class Ticket {
     @JoinColumn(name = "reservationID", nullable = true)
     private Reservation reservation;
 
-    @Column(name = "seatNumber", nullable = false, columnDefinition = "VARCHAR(60) CHECK (seatNumber < 100 and seatNumber > 0)")
-    private Integer seatNumber;
+    @Column(name = "seatNumber", nullable = false)
+    private String seatNumber;
 
     @Column(nullable = false)
-    private Long unitPrice = 50L;
+    private Double unitPrice = 50D;
 
     @Column(name = "firstName", nullable = false)
     private String firstName;
@@ -72,19 +72,19 @@ public class Ticket {
         this.reservation = reservation;
     }
 
-    public Integer getSeatNumber() {
+    public String getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(Integer seatNumber) {
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
 
-    public Long getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Long unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 

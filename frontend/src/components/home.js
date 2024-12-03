@@ -8,10 +8,10 @@ import image4 from '../images/image4.jpg';
 import image5 from '../images/image5.jpg';
 import image6 from '../images/image6.jpg';
 
-const Home = ({ onLogin }) => {
+const Home = ({ onLogin,setUser }) => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
-    const [userID,setUserID] = useState(101);
+    const [userID,setUserID] = useState(0);
     const [password, setPassword] = useState('');
     const [confirm_password, setCPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +30,16 @@ const Home = ({ onLogin }) => {
             ...prevState,
             [id]: value,
         }))
+    }
+    function decodeJWT(token) {
+        // Split the token into its parts
+        const parts = token.split('.');
+        // Decode the payload (second part)
+        const payload = parts[1];
+        const decodedPayload = atob(payload);
+        // Parse the JSON string
+        const payloadObject = JSON.parse(decodedPayload);
+        return payloadObject;
     }
 
     const handleLogin = async (e) => {
@@ -51,7 +61,9 @@ const Home = ({ onLogin }) => {
                 const data = await response.json();
                 localStorage.setItem('token', data.token); // Store JWT token
                 setIsLoggedIn(true); // Update state to logged in
+                setUser(decodeJWT(localStorage.getItem("token")).passengerID)
                 alert('Login successful!');
+
                 onLogin(); // Notify parent component (if needed)
             } else {
                 const error = await response.json();

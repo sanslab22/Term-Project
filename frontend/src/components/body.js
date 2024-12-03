@@ -6,6 +6,10 @@ import { FaUser, FaChair, FaCalendarAlt, FaClock } from "react-icons/fa";
 const Body = (reservation) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [flights,setFlights] = useState([]);
+    // const [seats,setSeats] = useState([]);
+    const[myFlight,setMyFlight] = useState()
+    const [people, setPeople] = useState([])
+    const [numPeople,setNumPeople] = useState(1)
 
     const [formData, setFormData] = useState({
         from: '',
@@ -17,7 +21,9 @@ const Body = (reservation) => {
         passengerNames: [{ firstName: '', lastName: '' }]
     });
     const [selectedFlight, setSelectedFlight] = useState(null);
-
+    // const backtopage1 = () => {
+    //     setSeats([])
+    // }
     function addMinutesToTime(timeString, minutesToAdd) {
         // Convert the time string to a Date object
         let [hours, minutes, seconds] = timeString.split(':').map(Number);
@@ -31,8 +37,24 @@ const Body = (reservation) => {
         let newSeconds = String(date.getSeconds()).padStart(2, '0');
         return `${newHours}:${newMinutes}:${newSeconds}`
     }
+    function decodeJWT(token) {
+        // Split the token into its parts
+        const parts = token.split('.');
+        // Decode the payload (second part)
+        const payload = parts[1];
+        const decodedPayload = atob(payload);
+        // Parse the JSON string
+        const payloadObject = JSON.parse(decodedPayload);
+        return payloadObject;
+    }
 
     const handleNextStep = () => {
+        if (currentStep === 1) {
+            setNumPeople(document.getElementById("numPeople").value)
+            console.log(numPeople)
+            setPeople(formData.passengerNames)
+            console.log(people)
+        }
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
         }
@@ -60,6 +82,74 @@ const Body = (reservation) => {
                 })
                 .catch(error => console.error('There was a problem with the fetch operation:', error));
             // console.log(url);
+        }
+        if (currentStep === 2) {
+            console.log(selectedFlight.flightID)
+            setMyFlight(selectedFlight.flightID)
+            console.log(myFlight)
+        }
+        if (currentStep === 3) {
+            console.log(people)
+            console.log(decodeJWT(localStorage.getItem("token")))
+            var passenger = decodeJWT(localStorage.getItem("token")).passengerID
+            var totalPrice = numPeople*50
+            var cardType = document.getElementById("card-type").value
+            var cardNumber = document.getElementById("card-number").value
+            var cardCode = document.getElementById("cvv").value
+            var zipcode = document.getElementById("zip").value
+            var expiryDate = document.getElementById("exp-date").value
+            var reservation = {
+                passengerId:passenger,
+                cardCode:cardCode,
+                cardNumber:cardNumber,
+                cardType:cardType,
+                expiryDate:expiryDate,
+                zipcode:zipcode,
+                totalPrice:totalPrice
+            }
+            fetch("http://localhost:8080/reservation", {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type":"application/json",
+                    "Accept":"application/json"
+                },
+                body: JSON.stringify(reservation)
+            })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data)
+                    console.log(people)
+                    people.map((person) => {
+                        var reservationID = data;
+                        var firstName = person.firstName;
+                        var lastName = person.lastName;
+                        var seatNum = person.seat;
+                        var flightId = selectedFlight.flightID;
+                        var ticket = {
+                            reservationID:reservationID,
+                            firstName:firstName,
+                            lastName:lastName,
+                            seatNum:seatNum,
+                            flightId:flightId,
+                            unitPrice:50
+                        }
+                        console.log(ticket)
+                        fetch("http://localhost:8080/reservation/ticket/"+reservationID,{
+                            method: "POST",
+                            mode: "cors",
+                            headers: {
+                                "Content-Type":"application/json",
+                                "Accept":"application/json"
+                            },
+                            body: JSON.stringify(ticket)
+                        })
+                            .then(res=>res.json())
+                            .then(data=>console.log(data))
+                })
+
+                })
+            console.log(passenger,cardType,cardNumber,cardCode,zipcode,expiryDate,totalPrice)
         }
     };
 
@@ -147,6 +237,8 @@ const Body = (reservation) => {
     const generateRandomSeat = () => {
         const row = Math.floor(Math.random() * 30) + 1; // Rows 1-30
         const seat = String.fromCharCode(65 + Math.floor(Math.random() * 6)); // Seats A-F
+        // setSeats([...seats,`${row}${seat}`]);
+        // console.log(seats)
         return `${row}${seat}`;
     };
 
@@ -314,7 +406,7 @@ const Body = (reservation) => {
                                             {formData.passengerNames?.map((passenger, index) => (
                                                 <li key={index}>
                                                     {passenger.firstName} {passenger.lastName} -
-                                                    Seat {generateRandomSeat()}
+                                                    {' '+passenger.seat}
                                                 </li>
                                             ))}
                                         </ul>
@@ -325,7 +417,7 @@ const Body = (reservation) => {
                                 </div>
                                 {selectedFlight ? (
                                     <div className="flight-sum">
-                                        <p><strong>Flight Name:</strong> {selectedFlight.airplaneID.airplaneID}</p>
+                                        <p><strong>Flight Name:</strong> {selectedFlight.flightID}</p>
                                         <p><strong>Departure
                                             Time:</strong> {selectedFlight.departureTime.substring(11, 19)}</p>
                                         <p><strong>Arrival
@@ -340,6 +432,10 @@ const Body = (reservation) => {
                             </div>
                             <form className="payment-form">
                                 <div className="input-group">
+                                    <label htmlFor="card-type">Card Type:</label>
+                                    <input type="text" id="card-type" placeholder="Enter Card Type"/>
+                                </div>
+                                <div className="input-group">
                                     <label htmlFor="card-number">Card Number:</label>
                                     <input type="text" id="card-number" placeholder="Enter card number"/>
                                 </div>
@@ -351,13 +447,17 @@ const Body = (reservation) => {
                                     <label htmlFor="cvv">CVV:</label>
                                     <input type="text" id="cvv" placeholder="Enter CVV"/>
                                 </div>
+                                <div className="input-group">
+                                    <label htmlFor="zip">Zip Code:</label>
+                                    <input type="text" id="zip" placeholder="Enter Zip Code"/>
+                                </div>
                             </form>
                         </div>
 
 
                     )}
 
-                    { currentStep === 4 &&
+                    {currentStep === 4 &&
                         <div>
                             <div className="ticket-container">
                                 <div className="ticket-header">
@@ -383,7 +483,9 @@ const Body = (reservation) => {
                                     {formData.passengerNames?.map((passenger, index) => (
                                         <div className="passenger-box" key={index}>
                                             <p>{passenger.firstName} {passenger.lastName} -
-                                                Seat {generateRandomSeat()}</p>
+                                                {/*Seat {generateRandomSeat()}*/}
+                                                {' '+ passenger.seat}
+                                            </p>
                                         </div>
                                     ))}
                                 </div>

@@ -14,13 +14,24 @@ public class TicketRequestDTO {
     private String lastName;
 
     @NotNull(message = "Seat Number cannot be null")
-    private Integer seatNum;
+    private String seatNum;
 
     @NotNull(message = "flight Number cannot be null")
     private Long flightId;
 
+
+    @NotNull(message = "unit price cannot be null")
+    private Double unitPrice;
+
     public @NotNull(message = "flight Number cannot be null") Long getFlightId() {
         return flightId;
+    }
+    public @NotNull(message = "unit price cannot be null") Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(@NotNull(message = "unit price cannot be null") Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public void setFlightId(@NotNull(message = "flight Number cannot be null") Long flightId) {
@@ -51,11 +62,11 @@ public class TicketRequestDTO {
         this.lastName = lastName;
     }
 
-    public @NotNull(message = "Seat Number cannot be null") Integer getSeatNum() {
+    public @NotNull(message = "Seat Number cannot be null") String getSeatNum() {
         return seatNum;
     }
 
-    public void setSeatNum(@NotNull(message = "Seat Number cannot be null") Integer seatNum) {
+    public void setSeatNum(@NotNull(message = "Seat Number cannot be null") String seatNum) {
         this.seatNum = seatNum;
     }
 }
