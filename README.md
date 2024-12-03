@@ -77,14 +77,14 @@ SQL Workbench Setup:
 ## Flight Table
 
 - This table only contains 8 flight all for Nov 20, 2024
-  (01, 'ATL', 'LAX', '2024-11-20 08:00:00', 300, 'SCHEDULED'),
-  (02, 'JFK', 'ORD', '2024-11-20 09:00:00', 150, 'SCHEDULED'),
-  (03, 'SFO', 'SEA', '2024-11-20 10:00:00', 120, 'SCHEDULED'),
-  (04, 'DEN', 'DFW', '2024-11-20 11:00:00', 180, 'SCHEDULED'),
-  (05, 'MIA', 'ATL', '2024-11-20 12:00:00', 180, 'SCHEDULED'),
-  (06, 'SEA', 'LAS', '2024-11-20 13:00:00', 150, 'SCHEDULED'),
-  (07, 'LAX', 'DFW', '2024-11-20 14:00:00', 90, 'SCHEDULED'),
-  (08, 'ORD', 'ATL', '2024-11-20 15:00:00', 180, 'SCHEDULED');
+  - 01, 'ATL', 'LAX', '2024-11-20 08:00:00', 300, 'SCHEDULED'),
+  - (02, 'JFK', 'ORD', '2024-11-20 09:00:00', 150, 'SCHEDULED'),
+  - (03, 'SFO', 'SEA', '2024-11-20 10:00:00', 120, 'SCHEDULED'),
+  - (04, 'DEN', 'DFW', '2024-11-20 11:00:00', 180, 'SCHEDULED'),
+  - (05, 'MIA', 'ATL', '2024-11-20 12:00:00', 180, 'SCHEDULED'),
+  - (06, 'SEA', 'LAS', '2024-11-20 13:00:00', 150, 'SCHEDULED'),
+  - (07, 'LAX', 'DFW', '2024-11-20 14:00:00', 90, 'SCHEDULED'),
+  - (08, 'ORD', 'ATL', '2024-11-20 15:00:00', 180, 'SCHEDULED');
   
 ## Authors
 
