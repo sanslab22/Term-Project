@@ -55,18 +55,18 @@ For testing purposes:
 2. Open the project in you preferred IDE with the root folder named `Arun_TermProject`
 3. Navigate to `src/main/resources/application.properties`
 4. Modify the following based on your the setup of MySQL:
-   (1) `spring.datasource.username= <your_username>`
-   (2) `spring.datasource.password= <your_password>`
-   (3) `jwt.secret.key= <your_password>`
+   1. `spring.datasource.username= <your_username>`
+   2. `spring.datasource.password= <your_password>`
+   3. `jwt.secret.key= <your_password>`
 5. Run the backend by clicking on the run icon in IDE
 6. Check the build terminal, to see if the Spring Boot project is running
 7. Open Terminal on IDE and enter the following:
-   (1) Enter `pwd` to verify that your path is currently `/Arun_TermProject`
-   (2) Enter `cd frontend/` - navigates to the React frontend
-   (3) Enter `npm install` - installs all the necessary dependencies
-   (4) Check terminal to see all dependencies are installed
-   (5) Then enter `npm start` - start the localhost:3030 server
-8. Once both the frontend and backend are running, the project is up and running successfully.
+   1. Enter `pwd` to verify that your path is currently `/Arun_TermProject`
+   2. Enter `cd frontend/` - navigates to the React frontend
+   3. Enter `npm install` - installs all the necessary dependencies
+   4. Check terminal to see all dependencies are installed
+   5. Then enter `npm start` - start the localhost:3030 server
+9. Once both the frontend and backend are running, the project is up and running successfully.
 
 ## Authors
 
