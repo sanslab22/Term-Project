@@ -1,5 +1,6 @@
 package com.example.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -24,6 +25,7 @@ public class Ticket {
     private Flight flight;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "reservationID", nullable = true)
     private Reservation reservation;
 
