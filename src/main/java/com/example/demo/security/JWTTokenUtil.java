@@ -23,10 +23,11 @@ public class JWTTokenUtil {
      * @param username The username of the user (subject)
      * @return JWT token
      */
-    public String generateToken(String username) {
+    public String generateToken(String username, Long passengerID) {
         try {
             Map<String, Object> claims = new HashMap<>();
             claims.put("role", "user"); // Example custom claim
+            claims.put("passengerID", passengerID);
 
             return Jwts.builder()
                     .setClaims(claims) // Custom claims

@@ -36,6 +36,6 @@ public class AuthService {
         }
 
         // Generate JWT token after successful authentication
-        return jwtTokenUtil.generateToken(passenger.getEmail());
+        return jwtTokenUtil.generateToken(passenger.getEmail(), passenger.getPassengerID());
     }
 }
