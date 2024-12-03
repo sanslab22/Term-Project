@@ -85,6 +85,9 @@ SQL Workbench Setup:
   - (06, 'SEA', 'LAS', '2024-11-20 13:00:00', 150, 'SCHEDULED'),
   - (07, 'LAX', 'DFW', '2024-11-20 14:00:00', 90, 'SCHEDULED'),
   - (08, 'ORD', 'ATL', '2024-11-20 15:00:00', 180, 'SCHEDULED');
+ 
+    <img width="569" alt="image" src="https://github.com/user-attachments/assets/fcab6d92-374b-454d-834e-c89206f83381">
+
   
 ## Authors
 
