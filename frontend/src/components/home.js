@@ -24,6 +24,41 @@ const Home = ({ onLogin,setUser }) => {
         confirm_password: '',
     })
 
+    const validateInputs = ({ email, password, username, confirm_password, phone }) => {
+        const errors = [];
+
+        // Check if email is valid
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errors.push("Invalid email format");
+            // alert('Invalid email format');
+        }
+
+        // Check if password meets complexity
+        if (password && password.length < 6) {
+            errors.push("Password must be at least 6 characters long");
+            // alert('Password must be at least 6 characters long')
+        }
+
+        // For registration: Ensure username is provided
+        if (username && username.trim().length === 0) {
+            errors.push("Username cannot be empty");
+            // alert('Username cannot be empty')
+        }
+
+        // For registration: Ensure passwords match
+        if (confirm_password && password !== confirm_password) {
+            errors.push("Passwords do not match");
+            // alert('Passwords do not match')
+        }
+
+        // For registration: Ensure phone is a valid number (optional)
+        if (phone && !/^\d{10}$/.test(phone)) {
+            errors.push("Phone number must be 10 digits");
+        }
+
+        return errors;
+    };
+
     const handleFormChange = (e) => {
         const { id, value } = e.target;
         setFormData((prevState) => ({
@@ -45,6 +80,14 @@ const Home = ({ onLogin,setUser }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         const{email, password} = formData
+
+        // Validate input
+        const errors = validateInputs({ email, password });
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            return;
+        }
+
         try{
             const url = 'http://localhost:8080/auth/login'; // backend endpoint
             const response = await fetch(url, {
@@ -80,8 +123,15 @@ const Home = ({ onLogin,setUser }) => {
         e.preventDefault();
         const{username, email, phone, password, confirm_password} = formData;
 
-        if (password !== confirm_password) {
-            alert('Passwords do not match');
+        // if (password !== confirm_password) {
+        //     alert('Passwords do not match');
+        //     return;
+        // }
+
+        // Validate input
+        const errors = validateInputs({ username, email, phone, password, confirm_password });
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
             return;
         }
 

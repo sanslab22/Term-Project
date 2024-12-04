@@ -20,22 +20,31 @@ public class AuthService {
 
     /**
      * Authenticate user and generate JWT token
-     * @param email: User's email
+     *
+     * @param email:    User's email
      * @param password: User's password
      * @return JWT token if authentication is successful
      * @throws IllegalArgumentException if user is not found or password is incorrect
      */
     public String authenticateUser(String email, String password) {
         // Find the passenger by email
-        Passenger passenger = passengerRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        try {
+            Passenger passenger = passengerRepository.findByEmail(email)
+                    .orElseThrow(() -> new InvalidCredentialsException("User not found"));
 
-        // Verify the password
-        if (!passwordEncoder.matches(password, passenger.getPassword())) {
-            throw new InvalidCredentialsException("Invalid credentials");
+            // Verify the password
+            if (!passwordEncoder.matches(password, passenger.getPassword())) {
+                throw new InvalidCredentialsException("Invalid credentials");
+            }
+
+            // Generate JWT token after successful authentication
+            return jwtTokenUtil.generateToken(passenger.getEmail(), passenger.getPassengerID());
+
+        } catch (InvalidCredentialsException e) {
+            throw e; // Pass this exception to be handled centrally
+        } catch (Exception e) {
+            // Catch unexpected exceptions and rethrow with a generic error
+            throw new RuntimeException("An unexpected error occurred during authentication", e);
         }
-
-        // Generate JWT token after successful authentication
-        return jwtTokenUtil.generateToken(passenger.getEmail(), passenger.getPassengerID());
     }
 }
