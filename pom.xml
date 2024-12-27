@@ -83,7 +83,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version> <!-- You can update this to a newer version if necessary -->
+				<version>3.9.0</version> <!-- You can update this to a newer version if necessary -->
 				<configuration>
 					<source>21</source>
 					<target>21</target>
